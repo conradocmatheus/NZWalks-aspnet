@@ -139,7 +139,15 @@ namespace NZWalks.API.Controllers
             _dbContext.Regions.Remove(regionDomainModel);
             _dbContext.SaveChanges();
 
-            return Ok();
+            var regionDto = new Region
+            {
+                Id = regionDomainModel.Id,
+                Code = regionDomainModel.Code,
+                Name = regionDomainModel.Name,
+                RegionImageUrl = regionDomainModel.RegionImageUrl
+            };
+
+            return Ok(regionDto);
         }
     }
 }
