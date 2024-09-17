@@ -30,12 +30,8 @@ namespace NZWalks.API.Controllers
         {
             // Get data from DB - Domain Models
             var regionsDomain = await _regionRepository.GetAllAsync();
-
-            // Map domain models to DTOs
-            var regionsDto = _mapper.Map<List<RegionDto>>(regionsDomain);
-
             // Return DTOs
-            return Ok(regionsDto);
+            return Ok(_mapper.Map<List<RegionDto>>(regionsDomain));
         }
 
         // GET REGION BY ID
