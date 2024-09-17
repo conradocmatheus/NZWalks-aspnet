@@ -17,4 +17,16 @@ public class SqlRegionRepository : IRegionRepository
     {
         return await _dbContext.Regions.ToListAsync();
     }
+
+    public async Task<Region?> GetByIdAsync(Guid id)
+    {
+        return await _dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task<Region> CreateAsync(Region region)
+    {
+        await _dbContext.Regions.AddAsync(region);
+        await _dbContext.SaveChangesAsync();
+        return region;
+    }
 }
